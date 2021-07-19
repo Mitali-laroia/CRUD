@@ -1,6 +1,13 @@
 const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
-mongoose.connect('mongodb://localhost:27017/EmployeesCRUDDB', { useNewUrlParser: true }, (err) => {
+dotenv.config();
+
+mongoose.connect(process.env.MONGO_URI,  {
+    useUnifiedTopology: true,
+    useNewUrlParser: true,
+    useCreateIndex: true,
+}, (err) => {
     if (!err) { console.log('MongoDB Connection Succeeded.') }
     else { console.log('Error in DB connection : ' + err) }
 });
